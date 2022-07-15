@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\NoticiaTipo;
-use Illuminate\Http\Request;
+use App\Http\Controllers\JornalistaController;
+use App\Http\Controllers\NoticiaTipoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('type')->controller(NoticiaTipo::class)->group(function () {
+Route::controller(JornalistaController::class)->group(function () {
+    Route::get('/all', 'index');
+    Route::get('/me', 'show');
+    Route::post('/register', 'store');
+    Route::post('/login', 'show');
+});
+
+
+Route::prefix('type')->controller(NoticiaTipoController::class)->group(function () {
     Route::get('/me', 'show');
     Route::post('/create', 'store');
     Route::post('/update/{type_id}', 'update');

@@ -10,5 +10,5 @@ class NoticiaTipo extends Model
     use HasFactory;
     protected $table = 'noticias_tipo';
     protected $fillable = ['id_jornalista', 'nome'];
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['id_jornalista', 'created_at', 'updated_at'];
 }
