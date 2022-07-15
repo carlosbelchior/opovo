@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\NoticiaTipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('type')->controller(NoticiaTipo::class)->group(function () {
+    Route::get('/me', 'show');
+    Route::post('/create', 'store');
+    Route::post('/update/{type_id}', 'update');
+    Route::post('/delete/{type_id}', 'destroy');
 });
+
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});*/
