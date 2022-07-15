@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreJornalistaRequest extends FormRequest
+class UpdateNoticiaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,11 @@ class StoreJornalistaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:3',
-            'sobrenome' => 'required|min:3',
-            'email' => 'required|unique|email',
-            'senha' => 'required|min:5',
+            'id_tipo_noticia' => 'required|exists:App\Models\NoticiaTipo,id',
+            'titulo' => 'required|min:3',
+            'descricao' => 'required|min:5',
+            'corpo' => 'required|min:5',
+            'imagem' => 'nullable|url',
         ];
     }
 

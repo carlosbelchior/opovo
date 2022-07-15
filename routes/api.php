@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JornalistaController;
+use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\NoticiaTipoController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::controller(JornalistaController::class)->group(function () {
 
 
 Route::prefix('type')->controller(NoticiaTipoController::class)->group(function () {
+    Route::get('/me', 'show');
+    Route::post('/create', 'store');
+    Route::post('/update/{type_id}', 'update');
+    Route::post('/delete/{type_id}', 'destroy');
+});
+
+
+Route::prefix('news')->controller(NoticiaController::class)->group(function () {
     Route::get('/me', 'show');
     Route::post('/create', 'store');
     Route::post('/update/{type_id}', 'update');
