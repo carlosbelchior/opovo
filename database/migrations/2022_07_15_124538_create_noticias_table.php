@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_jornalista')->constrained('jornalistas')->onDelete('cascade');
-            $table->foreignId('id_tipo_noticia')->constrained('noticias_tipo')->onDelete('cascade');
+            $table->foreignId('id_tipo_noticia')->constrained('noticias_tipo');
             $table->string('titulo');
             $table->string('descricao');
             $table->text('corpo');

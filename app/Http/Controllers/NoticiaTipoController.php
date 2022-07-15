@@ -26,9 +26,14 @@ class NoticiaTipoController extends Controller
     }
 
     // Atualiza o tipo de noticia
-    public function update(UpdateNoticiaTipoRequest $request, NoticiaTipo $noticiaTipo)
+    public function update(UpdateNoticiaTipoRequest $request, $noticiaTipo)
     {
-        if($noticiaTipo->update($request->validated()))
+        // TODO: Mudar de 1 para usuário logado
+        $noticiaTipoData = $request->validated();
+        if($noticiaTipoData['id_jornalista'] != 1)
+            return response()->json(['message' => 'Você não possui permissão para editar um tipo de noticia que não é seu.', 'type' => 'error'], 400);
+
+        if(NoticiaTipo::find($noticiaTipo)->update($noticiaTipoData))
             return response()->json(['message' => 'Tipo de noticia atualizada com sucesso', 'type' => 'success'], 200);
 
         // Erro geral
@@ -36,13 +41,13 @@ class NoticiaTipoController extends Controller
     }
 
     // Deleta o tipo de noticia
-    public function destroy(NoticiaTipo $noticiaTipo)
+    public function destroy($noticiaTipo)
     {
         // TODO: Mudar de 1 para usuário logado
-        if($noticiaTipo->id_jornalista != 1)
-            return response()->json(['message' => 'Você não possui permissão para editar um tipo de noticia que não é seu.', 'type' => 'error'], 400);
+        // if($noticiaTipo != 1)
+        //    return response()->json(['message' => 'Você não possui permissão para deletar um tipo de noticia que não é seu.', 'type' => 'error'], 400);
 
-        if($noticiaTipo->delete())
+        if(NoticiaTipo::find($noticiaTipo)->delete())
             return response()->json(['message' => 'Tipo de noticia deletada com sucesso.', 'type' => 'success'], 200);
 
         // Erro geral

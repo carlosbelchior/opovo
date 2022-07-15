@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(JornalistaController::class)->group(function () {
-    Route::get('/register', 'show');
-    Route::get('/login', 'show');
+    Route::get('/all', 'index');
     Route::get('/me', 'show');
+    Route::post('/register', 'store');
+    Route::post('/login', 'show');
 });
 
 

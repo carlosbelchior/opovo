@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class JornalistaController extends Controller
 {
+    // Exibe todos os jornalistas
+    public function index()
+    {
+        return Jornalista::all();
+    }
+
     // Exibe os dados do jornalista
     public function show()
     {
@@ -19,7 +25,7 @@ class JornalistaController extends Controller
     public function store(StoreJornalistaRequest $request)
     {
         $jornalistaData = $request->validated();
-        $jornalistaData['senha'] = Hash::make($request->input['senha']);
+        $jornalistaData['senha'] = Hash::make($request->validated('senha'));
         if(Jornalista::create($jornalistaData))
             return response()->json(['message' => 'Jornalista cadastrado com sucesso', 'type' => 'success'], 200);
 
