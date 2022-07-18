@@ -2,7 +2,7 @@ version: "3"
 services:
   nginx:
     image: nginx:stable-alpine
-    container_name: nginx
+    container_name: opovo_nginx
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -13,11 +13,11 @@ services:
       - php
       - mysql
     networks:
-      - project
+      - opovo
 
   mysql:
     image: mysql:latest
-    container_name: mysql
+    container_name: opovo_mysql
     restart: unless-stopped
     tty: true
     ports:
@@ -31,20 +31,20 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:
-      - project
+      - opovo
 
   php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php
+    container_name: opovo_php
     restart: unless-stopped
     volumes:
       - ./:/var/www/html
     ports:
       - "9000:9000"
     networks:
-      - project
+      - opovo
 
 networks:
-  project:
+  opovo:

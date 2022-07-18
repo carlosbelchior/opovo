@@ -28,7 +28,7 @@ class StoreJornalistaRequest extends FormRequest
         return [
             'nome' => 'required|min:3',
             'sobrenome' => 'required|min:3',
-            'email' => 'required|unique|email',
+            'email' => 'required|email|unique:App\Models\Jornalista,email',
             'senha' => 'required|min:5',
         ];
     }
