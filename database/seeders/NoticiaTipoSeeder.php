@@ -15,6 +15,6 @@ class NoticiaTipoSeeder extends Seeder
      */
     public function run()
     {
-        NoticiaTipo::factory()->count(10)->create();
+        NoticiaTipo::factory()->count(5)->create();
     }
 }

@@ -15,6 +15,6 @@ class JornalistaSeeder extends Seeder
      */
     public function run()
     {
-        Jornalista::factory()->count(10)->create();
+        Jornalista::factory()->count(2)->create();
     }
 }
