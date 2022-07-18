@@ -28,7 +28,6 @@ class UpdateNoticiaTipoRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_jornalista' => 'required|exists:App\Models\Jornalista,id',
             'nome' => 'required|min:3',
         ];
     }
